@@ -1,0 +1,147 @@
+<!DOCTYPE html5>
+<html>
+
+<head>
+    {% load static %}
+    <title>{{ user.username }}</title>
+    <script src="https://use.fontawesome.com/68a025e94e.js"></script>
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+</head>
+
+
+<body>
+
+    <section class="navbar"><section class="navbar-inner">
+        <div class="nav-item left">
+            <b3>Tindle</b3><img class="nav-logo" src="{% static 'img/favicon.png' %}">
+        </div><a href="{% url 'user:logout' %}"><div class="nav-item right gray">
+            <p><i class="fa fa-power-off fa-lg down transparent" aria-hidden="true"></i></p>
+        </div></a><div class="nav-item right gray">
+            <p><i class="fa fa-tachometer fa-lg down transparent" aria-hidden="true"></i></p>
+        </div><a href="{% url 'user:profile' %}"><div class="nav-item right gray">
+            <p><p6>{{ user.first_name|upper }} {{ user.last_name|upper }}</p6></p>
+        </div></a><div class="nav-item right">
+            <img class="nav-thumb" src="{{ user.userinfo.picture.url }}">
+        </div>
+
+
+        
+        <div class="search">
+            <form class="search" action="{% url 'user:search' %}" method="get">
+                <input class='search' type="text" placeholder="SEARCH" name="query">
+            </form>
+        </div>
+    </section></section>
+
+
+    <div class="holder">
+
+    </div>
+
+    
+    <section class="body">
+        <div class="body-inner">
+            {% for book in isbn %}
+                <div class="book-info">
+                    <img class="bookurl" src="{{ book.imageurl }}">
+                    <div class="book-text">
+                        <p5 class="booktitle">{{book.title}}</p5>    
+                    </div>
+                    <div class="rate-star">
+                        {% for i in "stars" %}
+                            <span>
+                            <form class="rate-star" action="{% url 'user:rate' %}" method="post" >
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ forloop.counter0 }}" name="rating">
+                                <input type="hidden" value="{{ book.id }}" name="bookid">
+                                <button type="submit" class="rate-star">
+                                    {% if book.rating > forloop.counter0 %}
+                                        </c><i class="fa fa-star" aria-hidden="true"></i></c>
+                                    {% else %}
+                                        </c><i class="fa fa-star-o" aria-hidden="true"></i></c>
+                                    {% endif %}
+                                </span>
+                                </button>
+                            </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            {% for book in author %}
+                <div class="book-info">
+                    <img class="bookurl" src="{{ book.imageurl }}">
+                    <div class="book-text">
+                        <p5 class="booktitle">{{book.title}}</p5>    
+                    </div>
+                    <div class="rate-star">
+                        {% for i in "stars" %}
+                            <span>
+                            <form class="rate-star" action="{% url 'user:rate' %}" method="post" >
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ forloop.counter0 }}" name="rating">
+                                <input type="hidden" value="{{ book.id }}" name="bookid">
+                                <button type="submit" class="rate-star">
+                                    {% if book.rating > forloop.counter0 %}
+                                        </c><i class="fa fa-star" aria-hidden="true"></i></c>
+                                    {% else %}
+                                        </c><i class="fa fa-star-o" aria-hidden="true"></i></c>
+                                    {% endif %}
+                                </span>
+                                </button>
+                            </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            {% for book in title %}
+                <div class="book-info">
+                    <img class="bookurl" src="{{ book.imageurl }}">
+                    <div class="book-text">
+                        <p5 class="booktitle">{{ book.title }}</p5>    
+                    </div>
+                    <div class="rate-star">
+                        {% for i in "stars" %}
+                            <span>
+                            <form class="rate-star" action="{% url 'user:rate' %}" method="post" >
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ forloop.counter0 }}" name="rating">
+                                <input type="hidden" value="{{ book.id }}" name="bookid">
+                                <button type="submit" class="rate-star">
+                                    {% if book.rating > forloop.counter0 %}
+                                        </c><i class="fa fa-star" aria-hidden="true"></i></c>
+                                    {% else %}
+                                        </c><i class="fa fa-star-o" aria-hidden="true"></i></c>
+                                    {% endif %}
+                                </span>
+                                </button>
+                            </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    </section></section>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
+<!--script>
+    $(document).ready(function () {
+        $('form.rate-star').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url : $(this).attr('action') || window.location.pathname,
+                type: "POST",
+                data: $(this).serialize(),
+                success: function (data) { $("form_output").html(data); },
+                error: function (jXHR, textStatus, errorThrown) { alert(errorThrown); }
+            });
+        });
+    });
+</script-->
+</html>
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html5>
+<html>
+
+<head>
+    {% load static %}
+    <title>Tindle - Register</title>
+    <script src="https://use.fontawesome.com/68a025e94e.js"></script>
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+
+<body>
+    <section class="wrap"><section class="wrapin"><section class="main"><div class="head">
+        <div class="title"><h0>Register</h0> <img class="side-logo" src="{% static 'img/favicon.png' %}"></div><br>
+        <div class="userinput">
+            <form action="{% url 'user:create' %}" method="post">
+                {% csrf_token %}
+                <table class="basic">
+
+                    <tr>
+                        <th class="basic" align="right">
+                            <p5>USERNAME</p5>
+                        </th><th class="basic" align="left">
+                            <input class="basic" type="text" name="username">
+                        </th><th class="basic" align="right">
+                            <p5>PASSWORD</p5>
+                        </th><th class="basic" align="left">
+                            <input class="basic" type="password" name="password">
+                        </th>
+                    </tr><tr>
+                        <th colspan="2"></th>
+                        <th class="basic" align="right">
+                            <p5>CONFIRM<br>PASSWORD</p5>
+                        </th><th class="basic" align="left">
+                            <input class="basic" type="password" name="confirm">
+                        </th>
+                    </tr><tr>
+                        <th colspan="4"><h1></h1></th>
+                    </tr><tr>
+                        <th class="basic" align="right">
+                            <p5>FIRST<br>NAME</p5>
+                        </th><th class="basic" align="left">
+                            <input class="basic" type="text" name="name_first">
+                        </th><th class="basic" align="right">
+                            <p5>LAST<br>NAME</p5>
+                        </th><th class="basic" align="left">
+                            <input class="basic" type="text" name="name_last">
+                        </th>
+                    </tr><tr>
+                        <th class="basic" align="right">
+                            <p5>BIRTH<br>DATE</p5>
+                        </th><th class="basic" align="left">
+                            <input class="basic" type="date" value="2003-02-27" name="birthdate">
+                        </th><th class="basic" align="right">
+                            <p5>EMAIL</p5>
+                        </th><th class="basic" align="left">
+                            <input class="basic" type="text" name="email">
+                        </th>
+                    </tr><tr>
+                        <th class="basic" align="right">
+                            <p5>INTERESTED<br>IN</p5>
+                        </th><th class="basic" align="left">
+                            <select name="interest">
+                                <option value="books">Books</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </th><th class="basic" align="right">
+                            <p5>GENDER</p5>
+                        </th><th class="basic" align="left">
+                            <select name="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </th>
+                        
+                    </tr><tr>
+                        <th class="basic" colspan="4" align="center">
+                            <input class="basic" type="submit" value="REGISTER">
+                            <a href="{% url 'user:login'%}">
+                                <input class="login" type="button" value="LOG IN">
+                            </a>
+                        </th>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div></section></section></section>
+
+</body>
+
+</html>
+
